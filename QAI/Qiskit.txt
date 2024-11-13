@@ -1,0 +1,55 @@
+When working with Jupyter Notebook, you’ll need to create and use a new virtual environment specifically for Jupyter to avoid the mixed dependency issue with Qiskit. Here’s how you can set up a new environment and ensure that Jupyter uses it:
+
+1. **Create a New Virtual Environment**:
+   - In your terminal, create a new environment:
+     ```bash
+     python -m venv qiskit_env
+     ```
+   - Activate the environment:
+     - On **Windows**:
+       ```bash
+       qiskit_env\Scripts\activate
+       ```
+     - On **MacOS/Linux**:
+       ```bash
+       source qiskit_env/bin/activate
+       ```
+
+2. **Install Qiskit and Jupyter**:
+   - Install the latest Qiskit version:
+     ```bash
+     pip install qiskit
+     ```
+   - Install Jupyter Notebook within this environment:
+     ```bash
+     pip install notebook
+     ```
+
+3. **Add the New Environment to Jupyter Notebook**:
+   - Install the IPython kernel for Jupyter:
+     ```bash
+     pip install ipykernel
+     ```
+   - Add the environment to Jupyter’s kernel list so it appears as an option when you open Jupyter:
+     ```bash
+     python -m ipykernel install --user --name=qiskit_env --display-name "Qiskit Env"
+     ```
+
+4. **Start Jupyter Notebook**:
+   - Launch Jupyter Notebook from the same environment:
+     ```bash
+     jupyter notebook
+     ```
+   - When you open a new notebook, select the kernel named "Qiskit Env" (or whatever display name you used) from the **Kernel > Change Kernel** menu.
+
+5. **Verify Installation**:
+   - In the notebook, try importing Qiskit to confirm it’s working:
+     ```python
+     import qiskit
+     print(qiskit.__version__)
+     ```
+
+6. **Clean Up Old Installations (Optional)**:
+   - If you’ve installed Qiskit or `qiskit-terra` in the base environment or another conflicting environment, consider uninstalling them there to avoid future conflicts.
+
+This should resolve the mixed dependency issue in Jupyter Notebook! For more information, refer to the [Qiskit packaging guide](https://qisk.it/packaging-1-0).
